@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="KD Time table" verbose="1">
+	<test name="KD">
+    <classes>
+		<class name="heman.kd_timetable"/>
+    </classes>
+  </test>
+</suite> 
