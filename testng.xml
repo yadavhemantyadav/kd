@@ -3,7 +3,7 @@
 <suite name="KD Time table" verbose="1">
 	<test name="KD">
     <classes>
-		<class name="heman.kd_timetable"/>
+		<class name="heman.kd_timetable.KDTime"/>
     </classes>
   </test>
 </suite> 
