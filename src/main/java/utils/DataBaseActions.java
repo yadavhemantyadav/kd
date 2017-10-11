@@ -25,7 +25,7 @@ public class DataBaseActions {
 	Data data = Data.getInstance();
 
 	private DataBaseActions() {
-		elementMap = data.getDataFromSheets("", this.getClass().getSimpleName().toString());
+
 	}
 
 	public static DataBaseActions getInstance() {
@@ -35,14 +35,36 @@ public class DataBaseActions {
 		return dataBaseActions;
 	}
 
-	public String getDataFromDB(String query, int columnIndex) {
-		URL = elementMap.get("CONNECTION_URL").toString();
-		USER = elementMap.get("DB_USER").toString();
-		PASSWORD = elementMap.get("DB_PASSWORD").toString();
+	private void getConnectionDetails(String className) {
+		elementMap = data.getDataFromSheets("", className);
+	}
+	
+	public void insertIntoDB(String query, String connection_url, String db_user,
+			String db_password){
+		
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			Connection con = DriverManager.getConnection(connection_url, db_user, db_password);
+			System.out.println("connected");
+			Statement st = con.createStatement();
+			System.out.println("going to execute");
+			st.executeUpdate(query);
+			System.out.println("executed");
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+
+	public String getDataFromDB(String query, int columnIndex, String connection_url, String db_user,
+			String db_password) {
+
 		String data = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+			Connection con = DriverManager.getConnection(connection_url, db_user, db_password);
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			if (rs.next()) {
@@ -52,13 +74,19 @@ public class DataBaseActions {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		System.out.println(data);
 		return data;
 	}
 
-	public void deleteFromDB(List<String> queries) {
-		URL = elementMap.get("CONNECTION_URL").toString();
-		USER = elementMap.get("DB_USER").toString();
-		PASSWORD = elementMap.get("DB_PASSWORD").toString();
+	public void deleteFromDB(List<String> queries, String className, String connection_url, String db_user,
+			String db_password) {
+
+		getConnectionDetails(className);
+
+		URL = elementMap.get(connection_url).toString();
+		USER = elementMap.get(db_user).toString();
+		PASSWORD = elementMap.get(db_password).toString();
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -74,10 +102,10 @@ public class DataBaseActions {
 			System.out.println(e.getMessage());
 		}
 	}
-	
-//	public static void main(String args[]){
-//		DataBaseActions data = DataBaseActions.getInstance();
-//		data.getDataFromDB("SELECT * from cscart_otp_details", 1);
-//	}
+
+	// public static void main(String args[]){
+	// DataBaseActions data = DataBaseActions.getInstance();
+	// data.getDataFromDB("SELECT * from cscart_otp_details", 1);
+	// }
 
 }

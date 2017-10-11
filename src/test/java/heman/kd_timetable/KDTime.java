@@ -25,12 +25,16 @@ public class KDTime extends BrowserFactory {
 	
 	@Test
 	public void abc() throws IOException{
-		helper.selectDropDownById("stte", "Delhi");
-		helper.sleep(2000);
-		helper.selectDropDownById("brnch", "UTTAM NAGAR");
+//		helper.selectDropDownById("stte", "Delhi");
+//		helper.sleep(2000);
+//		helper.selectDropDownById("brnch", "UTTAM NAGAR");
 		helper.sleep(3000);
-		List<WebElement> abc = helper.findElementsByXpath(".//*[@id='alinkdiv']/a");
-				
+		//List<WebElement> abc = helper.findElementsByXpath(".//*[@id='alinkdiv']/a");
+		
+		
+		List<WebElement> abc = helper.findElementsByXpath("html/body/div[3]/div[2]/div/div[2]/div/div/div/div/a");
+		
+		
 		GoogleSheetReader writer = GoogleSheetReader.getInstance();
 		
 		Map<Object, Object> map = new HashMap<Object,Object>();;
