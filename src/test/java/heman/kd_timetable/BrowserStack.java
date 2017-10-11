@@ -85,8 +85,8 @@ public class BrowserStack{
 	}
 
 	public static void putTimeTableDetailsInDB(Map<String, String> abc) {
-		String query = "INSERT INTO TimeTableDetails (dates, batch_code, duration1, duration2, duration, hall_number) "
-				+ "VALUES ('" + abc.get("dates") + "','" + abc.get("batchcode") + "','" + abc.get("duration1") + "','"
+		String query = "INSERT INTO TimeTableDetails (teacher_name, dates, batch_code, duration1, duration2, duration, hall_number) "
+				+ "VALUES ( ' ' , '" + abc.get("dates") + "','" + abc.get("batchcode") + "','" + abc.get("duration1") + "','"
 				+ abc.get("duration2") + "','" + abc.get("duration") + "','" + abc.get("hallno")+ "');";
 		System.out.println(query);
 		dataBaseAction.insertIntoDB(query, DBURL, DBUSER, DBPASS);
