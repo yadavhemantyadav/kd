@@ -59,7 +59,7 @@ public class ReadPdf {
 	      List<String> abc = new ArrayList<String>();
 	      
 	      for(String s : splitted_text){
-	    	  if(s.toLowerCase().contains("kdee-05".toLowerCase())){
+	    	  if(s.toLowerCase().contains("kduw-08".toLowerCase())){
 	    		  abc.add(s);
 	    	  }
 	      }
