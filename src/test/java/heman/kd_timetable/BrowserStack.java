@@ -76,7 +76,7 @@ public class BrowserStack{
 		String url = getPDFURL(date);
 
 		List<String> pdfData = ReadPdf.readPDF(url);
-
+		
 		for (String s : pdfData) {
 			Map<String, String> dataMap = parseStringToMap(s);
 			putTimeTableDetailsInDB(dataMap);
@@ -85,9 +85,9 @@ public class BrowserStack{
 	}
 
 	public static void putTimeTableDetailsInDB(Map<String, String> abc) {
-		String query = "INSERT INTO TimeTableDetails (teacher_name, dates, batch_code, duration1, duration2, duration, hall_number) "
+		String query = "INSERT INTO TimeTableDetails (teacher_name, dates, batch_code, duration1, duration2, duration, hall_number,subject) "
 				+ "VALUES ( ' ' , '" + abc.get("dates") + "','" + abc.get("batchcode") + "','" + abc.get("duration1") + "','"
-				+ abc.get("duration2") + "','" + abc.get("duration") + "','" + abc.get("hallno")+ "');";
+				+ abc.get("duration2") + "','" + abc.get("duration") + "','" + abc.get("hallno") + "','" + abc.get("subject") + "');";
 		System.out.println(query);
 		dataBaseAction.insertIntoDB(query, DBURL, DBUSER, DBPASS);
 	}
@@ -101,6 +101,7 @@ public class BrowserStack{
 		abc.put("duration1", dataArray[dataArray.length - 4]);
 		abc.put("batchcode", dataArray[dataArray.length - 5]);
 		abc.put("dates", dataArray[dataArray.length - 6]);
+		abc.put("subject", dataArray[dataArray.length - 7]);
 		return abc;
 	}
 

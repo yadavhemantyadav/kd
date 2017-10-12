@@ -11,12 +11,15 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import org.apache.pdfbox.cos.COSDocument;
 import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+
+import utils.GoogleSheetReader;
 
 
 
@@ -58,8 +61,14 @@ public class ReadPdf {
 	      
 	      List<String> abc = new ArrayList<String>();
 	      
+	      GoogleSheetReader reader = GoogleSheetReader.getInstance();
+	      
+	      Map<Object, Object> map = reader.getSheetMap("1adE6-7qxa0KwxqYAyPPuvhdoq8NxUebVbhma4JcmOOo", "Helper");
+	      
+	      String search = map.get("key").toString();
+	      
 	      for(String s : splitted_text){
-	    	  if(s.toLowerCase().contains("kdee-05".toLowerCase())){
+	    	  if(s.toLowerCase().contains(search.toLowerCase())){
 	    		  abc.add(s);
 	    	  }
 	      }
