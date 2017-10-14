@@ -46,9 +46,9 @@ public class BrowserStack{
 
 	public static final String DBUSER = "hemant";
 	public static final String DBPASS = "abc@abc";
-	public static final String DBURL = "jdbc:mysql://ec2-13-59-131-1.us-east-2.compute.amazonaws.com/kd";
+	public static final String DBURL = "jdbc:mysql://ec2-18-221-173-255.us-east-2.compute.amazonaws.com/kd";
 
-	//public static void main(String[] args) throws Exception {
+//	public static void main(String[] args) throws Exception {
 
 	@Test
 	public static void testThis() throws IOException{
